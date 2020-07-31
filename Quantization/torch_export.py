@@ -100,7 +100,6 @@ def generate_params(model):
 dic = generate_params(model)
 np.savez('XianKing_4w4a.npz', **dic)
 
-# dic = generate_config(model, [3, 416, 416])
 dic = generate_config(model, [3, 128, 128])
 print(dic)
 #indent参数根据数据格式缩进显示，读起来更加清晰, indent的值，代表缩进空格式

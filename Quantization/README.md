@@ -6,3 +6,4 @@
 
 3、运行`XianKing_param_gen.py`文件，设定各层输入输出并行度，运行后会在`./param/hls/`文件夹中生成`config.h`和`param.h`，供HLS模块调用。
 
+Reference: https://github.com/heheda365/ultra_net 

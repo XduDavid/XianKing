@@ -106,13 +106,15 @@ class Net(nn.Module):
             conv2d_Q_fn(W_BIT)(64, 32, kernel_size=3, stride=1, padding=1, bias=False),
             nn.BatchNorm2d(32),
             activation_quantize_fn(A_BIT),
-            nn.MaxPool2d(2, stride=2)
+            nn.MaxPool2d(2, stride=2),
         )
-
-        self.linear = nn.Linear(32*4*4, 10, bias=False)
+        self.conv1 = conv2d_Q_fn(W_BIT)(32*4*4, 10, kernel_size=1, stride=1, padding=0, bias=False)
+        self.Outact = nn.Sigmoid()
 
     def forward(self, x):
         x = self.layers(x)
-        x = x.view(-1, 32*4*4)
-        x = self.linear(x)
+        x = x.permute(0, 2, 3, 1)
+        x = x.reshape(-1, 32*4*4, 1, 1)
+        x = self.conv1(x)
+        x = self.Outact(x)
         return x

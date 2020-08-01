@@ -4,9 +4,9 @@
 
 ## 综合结果
 
-![sys_result1](./sys_result1.png)
+![sys_result1.png](http://ww1.sinaimg.cn/large/006AXXmQly1ghbns6bdruj30ld0bhglx.jpg)
 
 
 
-![sys_result2](./sys_result2.png)
+![sys_result2.png](http://ww1.sinaimg.cn/large/006AXXmQly1ghbnsrpzp8j30iv09r3yn.jpg)
 

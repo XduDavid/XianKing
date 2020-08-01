@@ -1,11 +1,10 @@
 代码参考
-
 https://medium.com/@thimblot/data-augmentation-boost-your-image-dataset-with-few-lines-of-python-155c2dc1baec
+
 原作者完整体代码
-
 https://github.com/tomahim/py-image-dataset-generator
-skimage库调用
 
+skimage库调用
 https://scikit-image.org/docs/stable/auto_examples/index.html
 
 操作步骤:

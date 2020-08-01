@@ -4,9 +4,9 @@
 
 ## 综合结果
 
-![](./sys_result1.png)
+![sys_result1](./sys_result1.png)
 
 
 
-![]()![sys_result2](./sys_result2.png)
+![sys_result2](./sys_result2.png)
 

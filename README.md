@@ -6,13 +6,45 @@
 
 顾大卫、王旭升、杨埂、黄翀
 
-## 概述
+## 项目概述
 
 本项目通过构建一个轻量化神经网络在Ultra96_v2上完成网络的前向计算过程，通过对网络进行量化减少参数量与计算量，使之便于部署到嵌入式设备中。利用FPGA并行化、流水化的优势，提高检测的实时性。项目的主要工作如下：
 
 1. 用Pytorch搭建所需网络并进行训练，并按照硬件需求完成网络的参数量化工作，生成HLS所需的权重参数文件。网络的权重和激活均为4bit数。
 2. 借鉴已经开源的HLS网络各模块的加速设计，网络中各模块均为可重复调用的模板类。在HLS工具中对网络中最重要的卷积模块进行加速，包括Padding单元，滑窗单元、矩阵向量乘法单元和激活单元进行优化与加速。全程使用Stream型数据在模块之间传输数据，便于添加DATAFLOW优化指令，同时对数组进行切分，对循环进行流水，引入输入并行度、输出并行度、流数据的位宽转换等方式充分利用板上资源对前向计算进行加速，提高计算并行度。
 3. 搭建Block Design，生成Bitstream，并在Jupyter Notebook上进行IP的调用与验证。
+
+## 工具版本
+
+1. Python 3.7
+2. Pytorch 1.5.0
+3. PyCharm 2019.3
+4. Vivado HLS 2018.3
+5. Vivado 2018.3
+
+## 板卡型号
+
+**ULTRA96-V2-G**
+
+镜像版本：ultra96v2_2.5.img
+
+[镜像下载地址](http://bit.ly/2MMrXcS)
+
+## 目录介绍
+
+```
+├─ExecutableFiles  
+│  ├─Deploy         存放可上板运行的比特流文件(.bit)以及Jupyter Notebook调用IP核的代码
+│  └─Scripts        存放可构建HLS IP核与搭建Block Design所需的TCL脚本文件
+└─SourceCode
+    ├─HLS           存放HLS工程源码、测试文件及综合结果截图
+    ├─ImgProcess    存放对数据集进行增强处理的Python代码
+    ├─Pictures      存放部分测试图片以及将测试图片转为bin格式的Python代码，供HLS调试使用
+    ├─Quantization  存放网络参数量化所需的Python代码
+    └─Training      存放构建网络模型以及训练网络所需的Python代码
+```
+
+
 
 ## 系统框图
 
@@ -50,7 +82,7 @@
 ![HLS问题.png](http://ww1.sinaimg.cn/large/006AXXmQly1ghb43j69eqj30hz053t90.jpg)
 
 1. **定义流类型数据位宽时，两个“>>”不能连写，中间需加空格，否则HLS识别不出来。**
-2. 日后需学习在其他编译器进行HLS代码的调试，HLS工具不太便于代码的调试。
+2. 日后需学习在其他编译器进行HLS代码的调试，Vivado HLS工具不太便于代码的调试。
 
 ## 暑期学校总结
 
